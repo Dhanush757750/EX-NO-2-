@@ -21,7 +21,6 @@ To encrypt a message, one would break the message into digrams (groups of 2 lett
 ## EXAMPLE:
 ![image](https://github.com/Hemamanigandan/EX-NO-2-/assets/149653568/e6858d4f-b122-42ba-acdb-db18ec2e9675)
 
- 
 
 ## ALGORITHM:
 
@@ -31,13 +30,49 @@ STEP-3: Arrange the keyword without duplicates in a 5*5 matrix in the row order 
 STEP-4: Group the plain text in pairs and match the corresponding corner letters by forming a rectangular grid.
 STEP-5: Display the obtained cipher text.
 
-
-
-
 Program:
-
-
-
-
-
+```
+#include <stdio.h>
+#include <stdlib.h>
+void caesarEncrypt(char *text, int key) 
+{
+    for (int i = 0; text[i] != '\0'; i++)
+{
+    char c = text[i];
+    if (c >= 'A' && c <= 'Z')
+    {
+        text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+    }
+    else if (c >= 'a' && c <= 'z')
+    {
+        text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
+        
+    } 
+    
+}
+    
+}
+void caesarDecrypt(char *text, int key) 
+{
+    caesarEncrypt(text, -key);
+    
+}
+int main()
+{
+    char message[100];
+    int key;
+    printf("Enter the message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+    printf("Enter the Caesar Cipher key (an integer): ");
+    scanf("%d", &key);
+    caesarEncrypt(message, key);
+    printf("Encrypted Message: %s", message);
+    caesarDecrypt(message, key);
+    printf("Decrypted Message: %s", message);
+    return 0;
+    
+}
+```
 Output:
+<img width="1920" height="1200" alt="Screenshot 2025-09-03 213012" src="https://github.com/user-attachments/assets/7b465f84-dc98-40c9-9e07-d828437eeadc" />
+
